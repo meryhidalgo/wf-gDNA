@@ -4,15 +4,15 @@
 nextflow.enable.dsl=2
 
 process basecall {
-    tag "${fast5}"
+    tag "${pod5}"
 
     input:
-        path fast5_dir
+        path pod5_dir
     output:
         path "pass/*.gz"
 
     """
-    guppy_basecaller \\
+    pod5_dir \\
     -i ${fast5_dir} \\
     -s . \\
     -c ${params.config_file} \\

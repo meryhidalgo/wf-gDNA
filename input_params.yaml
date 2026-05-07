@@ -1,0 +1,18 @@
+# Use this tamplate to pass your parameters to Nextflow.
+
+# TIP: use $baseDir to refer to the directory where main.nf is located
+# You can also use full paths instead  
+
+# ---- required settings ----
+run_name: 'test_wf-gDNA'
+
+enable_basecalling: false
+fastq_folder: "/media/neuro-rna/E2285B0C285ADF5B/people/Izaro/20260422_SLC6A3_nanopore/test/pass_fastqs"
+#output_folder: "/media/neuro-rna/E2285B0C285ADF5B/people/Izaro/20260422_SLC6A3_nanopore/test/out"
+
+
+genome_fasta: "/media/neuro-rna/E2285B0C285ADF5B/experiments/reference_files/human/GRCh38.primary_assembly.genome.fa"
+model_name: "r1041_e82_400bps_sup_v500"
+bedfile: "/media/neuro-rna/E2285B0C285ADF5B/people/Izaro/20260327_SLC6A3_SPG7_Nanopore/BI_analysis/minimap_out/SLC6A3/SLC6A3_variantRegion.bed"
+
+#sample_name: "SLC6A3_test"

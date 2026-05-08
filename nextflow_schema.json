@@ -43,5 +43,11 @@
                 }
             }
           }
+      },
+      "allOf": [
+      {
+          "$ref": "#/definitions/input_parameters"
       }
+    ]
 }
+

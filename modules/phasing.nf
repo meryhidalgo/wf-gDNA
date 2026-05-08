@@ -16,14 +16,14 @@ process clair3 {
 
     script:
     """
-    MODEL_NAME="r1041_e82_400bps_sup_v500"
+    #MODEL_NAME="r1041_e82_400bps_sup_v500"
 
     run_clair3.sh \
         --bam_fn=${bam} \
         --ref_fn=${reference} \
         --threads=4 \
         --platform=ont \
-        --model_path=/opt/models/\${MODEL_NAME} \
+        --model_path=/opt/models/${params.model_name} \
         --bed_fn=${bedfile} \
         --output=clair3
 

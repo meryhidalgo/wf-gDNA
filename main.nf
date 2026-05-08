@@ -39,7 +39,6 @@ def helpMessage() {
 }
 
 
-
 // ------------ INPUT FILES ------------
 
 // Main workflow
@@ -53,44 +52,30 @@ workflow {
         // Exit out and do not run anything else
         exit 1
      }
+     // ---- Input files ----
+      reference = channel.fromPath(params.genome_fasta, checkIfExists: true)
+      bedfile = channel.fromPath(params.bedfile, checkIfExists: true)
+      fastqs = channel.fromPath("${params.fastq_folder}/*.fastq.gz", checkIfExists: true)
 
-    Channel
-        .fromPath("${params.fastq_folder}/*.fastq.gz")
-        .collect()
-        | merge_fastqs
-        | set { fastq_file }
+    merge_fastqs(fastqs) | set { fastq_file }
 
      fastqc(fastq_file)
      multiqc(fastqc.out)
 
-    // Perform quality trimming on the input 
-    // quality_wf(
-    //     fastq_ch
-    // )
-    // output:
-    //   reads:
-    //     tuple val(specimen), path(read_1), path(read_2)
-
-    // Align the quality-trimmed reads to the reference genome
-    // minimap2(
-    //     fastq_file,
-    //     file(params.genome_fasta)
-    // )
-
-    bam_ch = minimap2(fastq_file, params.genome_fasta) \
+    bam_ch = minimap2(fastq_file, reference) \
         | samtools_index
 
     // STEP 1: Clair3
     vcf_ch = clair3(
         bam_ch,
-        file(params.genome_fasta),
-        file(params.bedfile)
+        reference,
+        bedfile
     )
     
     // STEP 2: WhatsHap phase and haplotag
     // fai = samtools_faidx(file(params.genome_fasta))
     reference_ch = samtools_faidx(
-        file(params.genome_fasta)
+        reference
     )
     whatshap_out = whatshap(
         vcf_ch,

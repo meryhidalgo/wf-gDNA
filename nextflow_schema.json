@@ -1,0 +1,47 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com///nextflow_schema.json",
+    "title": " pipeline parameters",
+    "description": "",
+    "type": "object",
+    "definitions": {
+        "input_parameters": {
+            "title": "Input parameters",
+            "type": "object",
+            "description": "",
+            "default": "",
+            "properties": {
+                "fastq_folder": {
+                    "type": "string",
+                    "default": "fastq_files",
+                    "description": "Directory with fastq files to merge"
+                },
+                "genome_fasta": {
+                    "type": "string",
+                    "default": "GRCh38.primary_assembly.genome.fa",
+                    "description": "Reference fasta file"
+                },
+                "output_folder": {
+                    "type": "string",
+                    "default": "/media/neuro-rna/E2285B0C285ADF5B/EPI2ME-pipelines/workflows/meryhidalgo/wf-gDNA/output",
+                    "description": "Folder where output will be saved. By default EPI2ME-pipelines"
+                },
+                "sample_name": {
+                    "type": "string",
+                    "default": "sample",
+                    "description": "Sample name will be used to output files"
+                },
+                "model_name": {
+                    "type": "string",
+                    "default": "r1041_e82_400bps_sup_v500",
+                    "description": "Basecalling model is needed for variant calling step. Example: r1041_e82_400bps_sup_v500"
+                },
+                "bedfile": {
+                    "type": "string",
+                    "default": "region.bed",
+                    "description": "Bedfile with region of interest to perform phasing"
+                }
+            }
+          }
+      }
+}

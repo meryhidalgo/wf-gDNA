@@ -23,7 +23,7 @@
                 },
                 "output_folder": {
                     "type": "string",
-                    "default": "/media/neuro-rna/E2285B0C285ADF5B/EPI2ME-pipelines/workflows/meryhidalgo/wf-gDNA/output",
+                    "default": "output",
                     "description": "Folder where output will be saved. By default EPI2ME-pipelines"
                 },
                 "sample_name": {
